@@ -32,8 +32,7 @@ const App = () => {
         if (!searchValue) {
             setFilteredRecipes(recipes)
         } else {
-            setFilteredRecipes(recipes.filter((recipe) => recipe.label.includes(searchValue) && recipe))
-            console.log(filteredRecipes)
+            setFilteredRecipes(recipes.filter((recipe) => recipe.label.toUpperCase().includes(searchValue.toUpperCase()) && recipe))
         }
     }, [searchValue, recipes]);
 
@@ -58,7 +57,7 @@ const App = () => {
             <StyledGrid container spacing={3}>
                 {!loading &&
                     filteredRecipes.map(recipe => (
-                        <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
+                        <Grid item key={recipe.uri} xs={12} sm={6} md={4} lg={3}>
                             <MediaCard recipe={recipe} />
                         </Grid>
                     ))}
