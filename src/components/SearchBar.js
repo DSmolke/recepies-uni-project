@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -10,6 +10,9 @@ const FullWidthTextField = styled(TextField)({
 
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = React.useState('');
+    useEffect(() => {
+        handleSearch()
+    }, [searchTerm]);
 
     const handleSearch = () => {
         if (onSearch) {

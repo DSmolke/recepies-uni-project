@@ -23,8 +23,19 @@ const StyledGrid = styled(Grid)`
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);
+    const [filteredRecipes, setFilteredRecipes] = useState(recipes)
+    const [searchValue, setSearchValue] = useState("")
     const [loading, setLoading] = useState(true);
     const client = new RecepieSearchClient();
+
+    useEffect(() => {
+        if (!searchValue) {
+            setFilteredRecipes(recipes)
+        } else {
+            setFilteredRecipes(recipes.filter((recipe) => recipe.label.includes(searchValue) && recipe))
+            console.log(filteredRecipes)
+        }
+    }, [searchValue, recipes]);
 
     useEffect(() => {
         const fetchInitialRecipes = async () => {
@@ -43,10 +54,10 @@ const App = () => {
     return (
         <>
             <Banner />
-            <SearchBar />
+            <SearchBar onSearch={setSearchValue}/>
             <StyledGrid container spacing={3}>
                 {!loading &&
-                    recipes.map(recipe => (
+                    filteredRecipes.map(recipe => (
                         <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
                             <MediaCard recipe={recipe} />
                         </Grid>

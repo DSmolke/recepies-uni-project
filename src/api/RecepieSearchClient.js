@@ -3,10 +3,10 @@ import axios from 'axios';
 export class RecepieSearchClient {
     constructor() {
         this.baseUrl = "https://api.edamam.com/api/recipes/v2";
-        // this.apiId = "78c4e655"
-        this.apiId = `${process.env.NEXT_PUBLIC_API_ID}`;
-        // this.apiKey = "21125605e90e709d0ec9002e823d4808";
-        this.apiKey = `${process.env.NEXT_PUBLIC_API_KEY}`;
+        this.apiId = "78c4e655"
+        // this.apiId = `${process.env.NEXT_PUBLIC_API_ID}`;
+        this.apiKey = "21125605e90e709d0ec9002e823d4808";
+        // this.apiKey = `${process.env.NEXT_PUBLIC_API_KEY}`;
 
         this.nextPageUrl = null;
     }
